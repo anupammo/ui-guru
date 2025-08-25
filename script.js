@@ -44,11 +44,39 @@ class UIBuilder {
         
         // Document click handler for deselection
         document.addEventListener('click', this.handleDocumentClick.bind(this));
+        
+        // Responsive view tabs
+        this.setupResponsiveViews();
     }
 
     setupCanvas() {
         // Initially hide placeholder when components are present
         this.updateCanvasPlaceholder();
+    }
+
+    setupResponsiveViews() {
+        const responsiveButtons = document.querySelectorAll('[data-view]');
+        
+        responsiveButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const viewType = e.target.getAttribute('data-view') || e.target.closest('[data-view]').getAttribute('data-view');
+                this.switchToView(viewType);
+                
+                // Update active button
+                responsiveButtons.forEach(btn => btn.classList.remove('active'));
+                (e.target.matches('[data-view]') ? e.target : e.target.closest('[data-view]')).classList.add('active');
+            });
+        });
+    }
+
+    switchToView(viewType) {
+        // Remove all view classes
+        this.canvas.classList.remove('desktop-view', 'tablet-view', 'mobile-view');
+        
+        // Add the selected view class
+        this.canvas.classList.add(`${viewType}-view`);
+        
+        console.log(`Switched to ${viewType} view`);
     }
 
     handleDragStart(e) {
@@ -110,7 +138,10 @@ class UIBuilder {
         wrapper.className = 'dropped-component fade-in';
         wrapper.setAttribute('data-component-type', componentType);
         wrapper.setAttribute('data-component-id', componentId);
-        wrapper.innerHTML = template;
+        
+        // Replace template placeholder IDs with unique ones for this instance
+        const uniqueTemplate = ComponentUtils.makeTemplateUnique(template, componentId);
+        wrapper.innerHTML = uniqueTemplate;
 
         // Add component controls
         const controls = this.createComponentControls(componentId);
@@ -143,6 +174,11 @@ class UIBuilder {
 
         // Setup nested drop zones if component has them
         this.setupNestedDropZones(wrapper);
+
+        // Initialize Bootstrap components for this new element
+        if (typeof window.initializeBootstrapComponents === 'function') {
+            setTimeout(() => window.initializeBootstrapComponents(), 100);
+        }
 
         console.log(`Added ${componentType} component with ID: ${componentId}`);
     }

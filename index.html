@@ -57,6 +57,10 @@
                         <i class="bi bi-square-fill"></i>
                         <span>Button</span>
                     </div>
+                    <div class="component-item" draggable="true" data-component="buttongroup">
+                        <i class="bi bi-ui-checks-grid"></i>
+                        <span>Button Group</span>
+                    </div>
                     <div class="component-item" draggable="true" data-component="input">
                         <i class="bi bi-input-cursor-text"></i>
                         <span>Input Field</span>
@@ -68,6 +72,14 @@
                     <div class="component-item" draggable="true" data-component="select">
                         <i class="bi bi-menu-down"></i>
                         <span>Select</span>
+                    </div>
+                    <div class="component-item" draggable="true" data-component="dropdown">
+                        <i class="bi bi-chevron-down"></i>
+                        <span>Dropdown</span>
+                    </div>
+                    <div class="component-item" draggable="true" data-component="closebutton">
+                        <i class="bi bi-x-circle"></i>
+                        <span>Close Button</span>
                     </div>
                 </div>
 
@@ -86,6 +98,26 @@
                         <i class="bi bi-award"></i>
                         <span>Badge</span>
                     </div>
+                    <div class="component-item" draggable="true" data-component="accordion">
+                        <i class="bi bi-list-ul"></i>
+                        <span>Accordion</span>
+                    </div>
+                    <div class="component-item" draggable="true" data-component="carousel">
+                        <i class="bi bi-images"></i>
+                        <span>Carousel</span>
+                    </div>
+                    <div class="component-item" draggable="true" data-component="collapse">
+                        <i class="bi bi-arrows-collapse"></i>
+                        <span>Collapse</span>
+                    </div>
+                    <div class="component-item" draggable="true" data-component="listgroup">
+                        <i class="bi bi-list-check"></i>
+                        <span>List Group</span>
+                    </div>
+                    <div class="component-item" draggable="true" data-component="modal">
+                        <i class="bi bi-window"></i>
+                        <span>Modal</span>
+                    </div>
                     <div class="component-item" draggable="true" data-component="text">
                         <i class="bi bi-type"></i>
                         <span>Text</span>
@@ -103,20 +135,50 @@
                         <i class="bi bi-arrow-right"></i>
                         <span>Breadcrumb</span>
                     </div>
+                    <div class="component-item" draggable="true" data-component="navstabs">
+                        <i class="bi bi-segmented-nav"></i>
+                        <span>Navs & Tabs</span>
+                    </div>
+                    <div class="component-item" draggable="true" data-component="pagination">
+                        <i class="bi bi-arrow-left-right"></i>
+                        <span>Pagination</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Main Canvas Area -->
             <div class="col-md-9 col-lg-10 canvas-container">
                 <div class="canvas-header">
-                    <h5><i class="bi bi-layout-text-window-reverse"></i> Design Canvas</h5>
-                    <small class="text-muted">Drag components from the sidebar to build your UI</small>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5><i class="bi bi-layout-text-window-reverse"></i> Design Canvas</h5>
+                            <small class="text-muted">Drag components from the sidebar to build your UI</small>
+                        </div>
+                        
+                        <!-- Responsive View Tabs -->
+                        <div class="responsive-tabs">
+                            <div class="btn-group" role="group" aria-label="Responsive views">
+                                <button type="button" class="btn btn-outline-secondary btn-sm active" data-view="desktop" title="Desktop View">
+                                    <i class="bi bi-laptop"></i> Desktop
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm" data-view="tablet" title="Tablet View">
+                                    <i class="bi bi-tablet"></i> Tablet
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm" data-view="mobile" title="Mobile View">
+                                    <i class="bi bi-phone"></i> Mobile
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div id="canvas" class="canvas">
-                    <div class="canvas-placeholder">
-                        <i class="bi bi-plus-circle-dotted"></i>
-                        <p>Drop components here to start building</p>
+                <!-- Canvas Viewport Container -->
+                <div class="canvas-viewport">
+                    <div id="canvas" class="canvas desktop-view">
+                        <div class="canvas-placeholder">
+                            <i class="bi bi-plus-circle-dotted"></i>
+                            <p>Drop components here to start building</p>
+                        </div>
                     </div>
                 </div>
             </div>

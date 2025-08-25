@@ -161,4 +161,182 @@ if (!document.querySelector('#bootstrap-collapse-styles')) {
         }
     `;
     document.head.appendChild(style);
+
+    // Initialize Bootstrap components on document ready
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeBootstrapComponents();
+    });
+
+    // Initialize Bootstrap components after DOM changes
+    window.initializeBootstrapComponents = function() {
+        initializeAccordions();
+        initializeCarousels();
+        initializeCollapses();
+        initializeDropdowns();
+        initializeTabs();
+    };
+
+    // Accordion functionality
+    function initializeAccordions() {
+        document.querySelectorAll('.accordion-button').forEach(button => {
+            if (button.hasAttribute('data-bs-initialized')) return;
+            button.setAttribute('data-bs-initialized', 'true');
+            
+            button.addEventListener('click', function() {
+                const target = document.querySelector(this.dataset.bsTarget);
+                const accordion = this.closest('.accordion');
+                const allCollapsibles = accordion.querySelectorAll('.accordion-collapse');
+                
+                // Close other accordion items
+                allCollapsibles.forEach(collapsible => {
+                    if (collapsible !== target && collapsible.classList.contains('show')) {
+                        collapsible.classList.remove('show');
+                        const otherButton = accordion.querySelector(`[data-bs-target="#${collapsible.id}"]`);
+                        if (otherButton) otherButton.classList.add('collapsed');
+                    }
+                });
+                
+                // Toggle current item
+                if (target.classList.contains('show')) {
+                    target.classList.remove('show');
+                    this.classList.add('collapsed');
+                } else {
+                    target.classList.add('show');
+                    this.classList.remove('collapsed');
+                }
+            });
+        });
+    }
+
+    // Carousel functionality
+    function initializeCarousels() {
+        document.querySelectorAll('.carousel').forEach(carousel => {
+            if (carousel.hasAttribute('data-bs-initialized')) return;
+            carousel.setAttribute('data-bs-initialized', 'true');
+            
+            const items = carousel.querySelectorAll('.carousel-item');
+            const indicators = carousel.querySelectorAll('.carousel-indicators button');
+            const prevBtn = carousel.querySelector('.carousel-control-prev');
+            const nextBtn = carousel.querySelector('.carousel-control-next');
+            let currentIndex = 0;
+
+            // Auto slide if data-bs-ride="carousel"
+            let autoSlide;
+            if (carousel.dataset.bsRide === 'carousel') {
+                autoSlide = setInterval(() => {
+                    nextSlide();
+                }, 5000);
+                
+                carousel.addEventListener('mouseenter', () => clearInterval(autoSlide));
+                carousel.addEventListener('mouseleave', () => {
+                    autoSlide = setInterval(() => nextSlide(), 5000);
+                });
+            }
+
+            function showSlide(index) {
+                items.forEach(item => item.classList.remove('active'));
+                indicators.forEach(indicator => indicator.classList.remove('active'));
+                
+                items[index].classList.add('active');
+                if (indicators[index]) indicators[index].classList.add('active');
+                currentIndex = index;
+            }
+
+            function nextSlide() {
+                const next = (currentIndex + 1) % items.length;
+                showSlide(next);
+            }
+
+            function prevSlide() {
+                const prev = (currentIndex - 1 + items.length) % items.length;
+                showSlide(prev);
+            }
+
+            // Event listeners
+            if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+            if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+            
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => showSlide(index));
+            });
+        });
+    }
+
+    // Collapse functionality
+    function initializeCollapses() {
+        document.querySelectorAll('[data-bs-toggle="collapse"]').forEach(toggle => {
+            if (toggle.hasAttribute('data-bs-initialized')) return;
+            toggle.setAttribute('data-bs-initialized', 'true');
+            
+            toggle.addEventListener('click', function() {
+                const target = document.querySelector(this.dataset.bsTarget);
+                if (target) {
+                    if (target.classList.contains('show')) {
+                        target.classList.remove('show');
+                    } else {
+                        target.classList.add('show');
+                    }
+                }
+            });
+        });
+    }
+
+    // Dropdown functionality
+    function initializeDropdowns() {
+        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+            if (toggle.hasAttribute('data-bs-initialized')) return;
+            toggle.setAttribute('data-bs-initialized', 'true');
+            
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                const dropdown = this.parentElement;
+                const menu = dropdown.querySelector('.dropdown-menu');
+                
+                // Close other dropdowns
+                document.querySelectorAll('.dropdown-menu.show').forEach(otherMenu => {
+                    if (otherMenu !== menu) otherMenu.classList.remove('show');
+                });
+                
+                // Toggle current dropdown
+                menu.classList.toggle('show');
+            });
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.matches('.dropdown-toggle')) {
+                document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                    menu.classList.remove('show');
+                });
+            }
+        });
+    }
+
+    // Tabs functionality
+    function initializeTabs() {
+        document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
+            if (tab.hasAttribute('data-bs-initialized')) return;
+            tab.setAttribute('data-bs-initialized', 'true');
+            
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const tabContainer = this.closest('.nav-tabs').parentElement;
+                const targetId = this.dataset.bsTarget.substring(1);
+                const targetPane = document.getElementById(targetId);
+                
+                // Remove active from all tabs and panes in this container
+                tabContainer.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+                tabContainer.querySelectorAll('.tab-pane').forEach(pane => {
+                    pane.classList.remove('active', 'show');
+                });
+                
+                // Add active to current tab and pane
+                this.classList.add('active');
+                if (targetPane) {
+                    targetPane.classList.add('active', 'show');
+                }
+            });
+        });
+    }
 }
