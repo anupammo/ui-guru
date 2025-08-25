@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Guru - Bootstrap Drag & Drop Builder</title>
+    <link href="bootstrap-local.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">
+                <i class="bi bi-brush"></i> UI Guru
+            </span>
+            <div class="d-flex">
+                <button class="btn btn-outline-light me-2" id="clearCanvas">
+                    <i class="bi bi-trash"></i> Clear
+                </button>
+                <button class="btn btn-success" id="exportCode">
+                    <i class="bi bi-download"></i> Export HTML
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Component Palette Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar">
+                <div class="sidebar-header">
+                    <h5><i class="bi bi-palette"></i> Components</h5>
+                </div>
+                
+                <!-- Layout Components -->
+                <div class="component-section">
+                    <h6 class="section-title">Layout</h6>
+                    <div class="component-item" draggable="true" data-component="container">
+                        <i class="bi bi-border-all"></i>
+                        <span>Container</span>
+                    </div>
+                    <div class="component-item" draggable="true" data-component="row">
+                        <i class="bi bi-distribute-horizontal"></i>
+                        <span>Row</span>
+                    </div>
+                    <div class="component-item" draggable="true" data-component="column">
+                        <i class="bi bi-distribute-vertical"></i>
+                        <span>Column</span>
+                    </div>
+                </div>
+
+                <!-- Form Components -->
+                <div class="component-section">
+                    <h6 class="section-title">Form Elements</h6>
+                    <div class="component-item" draggable="true" data-component="button">
+                        <i class="bi bi-square-fill"></i>
+                        <span>Button</span>
+                    </div>
+                    <div class="component-item" draggable="true" data-component="input">
+                        <i class="bi bi-input-cursor-text"></i>
+                        <span>Input Field</span>
+                    </div>
+                    <div class="component-item" draggable="true" data-component="textarea">
+                        <i class="bi bi-textarea-resize"></i>
+                        <span>Textarea</span>
+                    </div>
+                    <div class="component-item" draggable="true" data-component="select">
+                        <i class="bi bi-menu-down"></i>
+                        <span>Select</span>
+                    </div>
+                </div>
+
+                <!-- Content Components -->
+                <div class="component-section">
+                    <h6 class="section-title">Content</h6>
+                    <div class="component-item" draggable="true" data-component="card">
+                        <i class="bi bi-card-text"></i>
+                        <span>Card</span>
+                    </div>
+                    <div class="component-item" draggable="true" data-component="alert">
+                        <i class="bi bi-exclamation-triangle"></i>
+                        <span>Alert</span>
+                    </div>
+                    <div class="component-item" draggable="true" data-component="badge">
+                        <i class="bi bi-award"></i>
+                        <span>Badge</span>
+                    </div>
+                    <div class="component-item" draggable="true" data-component="text">
+                        <i class="bi bi-type"></i>
+                        <span>Text</span>
+                    </div>
+                </div>
+
+                <!-- Navigation Components -->
+                <div class="component-section">
+                    <h6 class="section-title">Navigation</h6>
+                    <div class="component-item" draggable="true" data-component="navbar">
+                        <i class="bi bi-nav-fill"></i>
+                        <span>Navbar</span>
+                    </div>
+                    <div class="component-item" draggable="true" data-component="breadcrumb">
+                        <i class="bi bi-arrow-right"></i>
+                        <span>Breadcrumb</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Canvas Area -->
+            <div class="col-md-9 col-lg-10 canvas-container">
+                <div class="canvas-header">
+                    <h5><i class="bi bi-layout-text-window-reverse"></i> Design Canvas</h5>
+                    <small class="text-muted">Drag components from the sidebar to build your UI</small>
+                </div>
+                
+                <div id="canvas" class="canvas">
+                    <div class="canvas-placeholder">
+                        <i class="bi bi-plus-circle-dotted"></i>
+                        <p>Drop components here to start building</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code Export Modal -->
+    <div class="modal fade" id="exportModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-code-slash"></i> Generated HTML Code
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <textarea id="exportedCode" class="form-control" rows="15" readonly></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="copyCode">
+                        <i class="bi bi-clipboard"></i> Copy to Clipboard
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="bootstrap-local.js"></script>
+    <script src="components.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
