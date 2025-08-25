@@ -184,6 +184,216 @@ const COMPONENTS = {
             </ol>
         </nav>`,
         description: 'Bootstrap breadcrumb navigation'
+    },
+
+    // New Missing Components
+    accordion: {
+        name: 'Accordion',
+        category: 'Content',
+        template: `<div class="accordion mb-3" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                        Accordion Item #1
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        This is the first item's accordion body.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                        Accordion Item #2
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        This is the second item's accordion body.
+                    </div>
+                </div>
+            </div>
+        </div>`,
+        description: 'Bootstrap accordion component'
+    },
+
+    buttongroup: {
+        name: 'Button Group',
+        category: 'Form',
+        template: `<div class="btn-group mb-3" role="group" aria-label="Button group">
+            <button type="button" class="btn btn-outline-primary">Left</button>
+            <button type="button" class="btn btn-outline-primary">Middle</button>
+            <button type="button" class="btn btn-outline-primary">Right</button>
+        </div>`,
+        description: 'Bootstrap button group component'
+    },
+
+    carousel: {
+        name: 'Carousel',
+        category: 'Content',
+        template: `<div id="carouselExample" class="carousel slide mb-3" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="d-block w-100 bg-secondary text-white text-center p-5">First slide</div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-block w-100 bg-secondary text-white text-center p-5">Second slide</div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-block w-100 bg-secondary text-white text-center p-5">Third slide</div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>`,
+        description: 'Bootstrap carousel component'
+    },
+
+    closebutton: {
+        name: 'Close Button',
+        category: 'Form',
+        template: `<button type="button" class="btn-close mb-2" aria-label="Close"></button>`,
+        description: 'Bootstrap close button'
+    },
+
+    collapse: {
+        name: 'Collapse',
+        category: 'Content',
+        template: `<div class="mb-3">
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample">
+                Toggle Collapse
+            </button>
+            <div class="collapse mt-2" id="collapseExample">
+                <div class="card card-body">
+                    Some placeholder content for the collapse component.
+                </div>
+            </div>
+        </div>`,
+        description: 'Bootstrap collapse component'
+    },
+
+    dropdown: {
+        name: 'Dropdown',
+        category: 'Form',
+        template: `<div class="dropdown mb-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                Dropdown button
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
+            </ul>
+        </div>`,
+        description: 'Bootstrap dropdown component'
+    },
+
+    listgroup: {
+        name: 'List Group',
+        category: 'Content',
+        template: `<div class="list-group mb-3">
+            <a href="#" class="list-group-item list-group-item-action active">
+                Active list item
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">A simple list item</a>
+            <a href="#" class="list-group-item list-group-item-action">Another list item</a>
+            <a href="#" class="list-group-item list-group-item-action disabled">Disabled list item</a>
+        </div>`,
+        description: 'Bootstrap list group component'
+    },
+
+    modal: {
+        name: 'Modal',
+        category: 'Content',
+        template: `<div class="mb-3">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Launch modal
+            </button>
+            <div class="modal fade" id="exampleModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            Modal body text goes here.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`,
+        description: 'Bootstrap modal component'
+    },
+
+    navstabs: {
+        name: 'Navs & Tabs',
+        category: 'Navigation',
+        template: `<div class="mb-3">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home">Home</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile">Profile</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact">Contact</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel">
+                    <p class="mt-3">Home tab content</p>
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel">
+                    <p class="mt-3">Profile tab content</p>
+                </div>
+                <div class="tab-pane fade" id="contact" role="tabpanel">
+                    <p class="mt-3">Contact tab content</p>
+                </div>
+            </div>
+        </div>`,
+        description: 'Bootstrap navs and tabs component'
+    },
+
+    pagination: {
+        name: 'Pagination',
+        category: 'Navigation',
+        template: `<nav aria-label="Page navigation" class="mb-3">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>`,
+        description: 'Bootstrap pagination component'
     }
 };
 
@@ -220,6 +430,17 @@ const ComponentUtils = {
         const timestamp = Date.now();
         const random = Math.random().toString(36).substr(2, 5);
         return `${componentType}-${timestamp}-${random}`;
+    },
+
+    // Make template IDs unique to prevent conflicts
+    makeTemplateUnique: function(template, componentId) {
+        // Replace common ID patterns with unique ones
+        return template
+            .replace(/id="([^"]+)"/g, `id="$1-${componentId}"`)
+            .replace(/data-bs-target="#([^"]+)"/g, `data-bs-target="#$1-${componentId}"`)
+            .replace(/data-bs-parent="#([^"]+)"/g, `data-bs-parent="#$1-${componentId}"`)
+            .replace(/for="([^"]+)"/g, `for="$1-${componentId}"`)
+            .replace(/aria-controls="([^"]+)"/g, `aria-controls="$1-${componentId}"`);
     },
 
     // Clean HTML for export (remove builder-specific classes)
